@@ -6,7 +6,6 @@ import java.util.Optional;
 import com.example.demo.repository.*;
 import com.example.demo.user.*;
 import com.example.demo.userService.*;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,14 +14,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
 @RequestMapping("/users")
 public class Controller {
 
 	@Autowired
     private UserService userService; // Use proper naming conventions
 
-    
+	@GetMapping("/")
+    public String healthCheck() {
+        return "Backend is UP ✅";
+    }
  
    
     @GetMapping("/{id}")
