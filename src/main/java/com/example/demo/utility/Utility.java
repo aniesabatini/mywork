@@ -20,15 +20,15 @@ public class Utility {
 
     public Utility() {
         // Your secret must be strong enough (min 32 bytes for HS256)
-        String secret = "this-is-a-very-strong-secret-key-which-is-long-enough";
+        String secret = "your-32-character-long-secret-key!!!";
         byte[] keyBytes = Base64.getEncoder().encode(secret.getBytes());
         this.key = new SecretKeySpec(keyBytes, SignatureAlgorithm.HS256.getJcaName());
     }
 
    
-    public boolean validateToken(String token, String username) {
+    public boolean validateToken(String token, UserDetails userDetails) {
         String extractedUsername = extractUsername(token);
-        return (extractedUsername.equals(username) && !isTokenExpired(token));
+        return (extractedUsername.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
 
     public String extractUsername(String token) {
