@@ -1,4 +1,4 @@
-package com.example.demo.utility;
+package com.example.project.utility;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
@@ -27,11 +27,13 @@ public class JwtUtil {
                 .sign(Algorithm.HMAC256(secret));
     }
 
-    public boolean validateToken(String token) {
+    // New method for validation with UserDetails
+    public boolean validateToken(String token, org.springframework.security.core.userdetails.UserDetails userDetails) {
         try {
             JWTVerifier verifier = JWT.require(Algorithm.HMAC256(secret)).build();
-            verifier.verify(token);
-            return true;
+            DecodedJWT decodedJWT = verifier.verify(token);
+            String username = decodedJWT.getSubject();
+            return username.equals(userDetails.getUsername()) && decodedJWT.getExpiresAt().after(new Date());
         } catch (JWTVerificationException e) {
             return false;
         }

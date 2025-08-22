@@ -1,16 +1,16 @@
-package com.example.demo.controller;
+package com.example.project.controller;
 
 import java.util.List;
 import java.util.Optional;
 
-import com.example.demo.user.User;
-import com.example.demo.userService.UserService;
+import com.example.project.user.User;
+import com.example.project.userService.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-//@RequestMapping("/users")
+@RequestMapping("/users")
 public class UserController {
 
     @Autowired
@@ -22,8 +22,8 @@ public class UserController {
     }
 
   
-    @PostMapping
+ /*   @PostMapping
     public User createUser(@RequestBody User user) {
         return userService.addUser(user);
-    }
+    } */
 }

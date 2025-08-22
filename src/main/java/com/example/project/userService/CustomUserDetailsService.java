@@ -1,4 +1,4 @@
-package com.example.demo.userService;
+package com.example.project.userService;
 
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -10,18 +10,19 @@ import org.springframework.stereotype.Service;
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
-    private final PasswordEncoder passwordEncoder;
+    private final String encodedPassword;
 
     public CustomUserDetailsService(PasswordEncoder passwordEncoder) {
-        this.passwordEncoder = passwordEncoder;
+        this.encodedPassword = passwordEncoder.encode("password"); // encode once
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         if ("user".equals(username)) {
-            return User.withUsername("user")
-                       .password(passwordEncoder.encode("password")) // encode password
-                       .authorities("ROLE_USER")
+            return User.builder()
+                       .username("user")
+                       .password(encodedPassword)  // reuse same hash
+                       .roles("USER")
                        .build();
         }
         throw new UsernameNotFoundException("User not found: " + username);
