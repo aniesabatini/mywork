@@ -1,4 +1,4 @@
-package com.example.demo.utility;
+package com.example.project.utility;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
