@@ -43,10 +43,7 @@
         </dependency>
 
         <!-- Spring Security -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
+       
 
         <!-- JWT (latest) -->
        <dependency>
@@ -68,6 +65,8 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+<!-- JWT dependency -->
+
 
     </dependencies>
 

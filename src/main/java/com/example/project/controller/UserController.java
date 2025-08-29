@@ -20,7 +20,10 @@ public class UserController {
     public Optional<User> getById(@PathVariable Long id) {
         return userService.getUserById(id);
     }
-
+    @GetMapping("/")
+    public String home() {
+        return "Application is running!";
+    }
   
  /*   @PostMapping
     public User createUser(@RequestBody User user) {
